@@ -1,4 +1,4 @@
-// @APIVersion 1.0.0
+// Package routers @APIVersion 1.0.0
 // @Title beego Test API
 // @Description beego has a very cool tools to autogenerate documents for your API
 // @Contact astaxie@gmail.com
@@ -14,4 +14,6 @@ import (
 
 func init() {
 	beego.Router("/type/getTypeList", &controllers.TypeController{}, "get:GetTypeList")
+	beego.Router("/user/getUserOpenid", &controllers.UserController{}, "post:GetUserOpenid")
+	beego.Router("/user/regUser", &controllers.UserController{}, "post:RegUserInfo")
 }
