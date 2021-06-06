@@ -16,4 +16,6 @@ func init() {
 	beego.Router("/type/getTypeList", &controllers.TypeController{}, "get:GetTypeList")
 	beego.Router("/user/getUserOpenid", &controllers.UserController{}, "post:GetUserOpenid")
 	beego.Router("/user/regUser", &controllers.UserController{}, "post:RegUserInfo")
+	beego.Router("/bill/addBillRecords", &controllers.BillController{}, "post:AddBillRecords")
+	beego.Router("/bill/getBillList", &controllers.BillController{}, "get:GetBillList")
 }

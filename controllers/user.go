@@ -21,6 +21,10 @@ type LoginInfo struct {
 	Openid     string `json:"openid"`
 }
 
+//type Openid struct {
+//	Openid string
+//}
+
 // GetUserOpenid
 // @Description: 获取用户微信凭证
 // @receiver u *UserController
@@ -62,21 +66,30 @@ func (u *UserController) GetUserOpenid() {
 // @receiver u *UserController
 func (u *UserController) RegUserInfo() {
 	var (
-		err  error
+		err error
+		openid struct{
+			Openid string
+		}
 	)
-	openid :=u.GetString("openid")
-	fmt.Println(openid)
-	if openid == "" {
+	body := u.Ctx.Input.RequestBody
+
+	err = json.Unmarshal(body, &openid)
+
+	if err != nil {
+		u.Data["json"] = ReturnError(10004, "用户登录信息错误1")
+		u.ServeJSON()
+	}
+	if openid.Openid == "" {
 		u.Data["json"] = ReturnError(10004, "用户登录信息错误1")
 		u.ServeJSON()
 	}
 	//将用户信息保存进数据库
-	err = models.RegUser(openid)
+	err = models.RegUser(openid.Openid)
+	fmt.Println(err)
 	if err != nil {
 		u.Data["json"] = ReturnError(10004, "登录失败")
 		u.ServeJSON()
 	}
-
 	u.Data["json"] = ReturnSuccess(0, "success", nil, 0)
 	u.ServeJSON()
 

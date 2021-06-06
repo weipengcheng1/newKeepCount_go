@@ -11,7 +11,7 @@ type KeepUser struct {
 	Openid       string
 	HeadPortrait string
 	CreateTime   int64
-	lastTime     int64
+	LastTime     int64
 }
 
 func init() {
@@ -53,7 +53,7 @@ func RegUser(openid string) error {
 		createTime := time.Now().Unix()
 		lastTime := time.Now().Unix()
 		user.CreateTime = createTime
-		user.lastTime = lastTime
+		user.LastTime = lastTime
 		_, err := o.Insert(&user)
 		return err
 	}

@@ -5,7 +5,6 @@ go 1.15
 require github.com/astaxie/beego v1.12.3
 
 require (
-	github.com/beego/beego/v2 v2.0.1 // indirect
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/google/go-cmp v0.5.1 // indirect
 	github.com/lib/pq v1.10.2 // indirect
